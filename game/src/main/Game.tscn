@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://mockup.png" type="Texture" id=1]
 [ext_resource path="res://src/main/MainTitle.gd" type="Script" id=2]
+[ext_resource path="res://src/main/Game.gd" type="Script" id=3]
 
 [node name="Game" type="Node2D"]
+script = ExtResource( 3 )
 
 [node name="Main Title" type="Control" parent="."]
 margin_right = 320.0
@@ -17,6 +19,9 @@ __meta__ = {
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button" type="Button" parent="Main Title"]
 margin_left = 116.954
@@ -28,4 +33,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="generate_heavens" from="Main Title" to="." method="generate_heavens"]
 [connection signal="pressed" from="Main Title/Button" to="Main Title" method="_on_Button_pressed"]
