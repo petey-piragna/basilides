@@ -17,19 +17,37 @@ func generate_heavens():
 	print("generating heavens")
 	var heaven_stack = []
 	var heavens = [0, 50, 50, 50]
+	var heaven_rarity = [5, 10, 20, 50]
 	var heaven_counter = 365
 	while heaven_counter > 0:
-		randomize()
-		heavens[0] = randi() % 15
-		heavens[1] = _random_influence(heavens[1])
-		heavens[2] = _random_influence(heavens[2])
-		heavens[3] = _random_influence(heavens[3])
+		var j = 0
+		var lvl_value = 1
+		heavens[0] = 0
+		while j < 4:
+			randomize()
+			if randi() % heaven_rarity[j] == 0:
+				heavens[0] = heavens[0] + lvl_value
+			lvl_value = lvl_value * 2
+			j = j + 1
+		var i = 1
+		while i < 4:
+			heavens[i] = _random_influence(heavens[i])
+			i += 1
 		heaven_stack.push_back(heavens.slice(0, heavens.size()))
-		heaven_counter = heaven_counter - 1 
+		heaven_counter = heaven_counter - 1
+		
+		#var i = 0
+		#while i > 6:
+			#print(heaven_stack[randi() % 365])
+			#i += 1
+	print(heaven_stack) 
 
 func _random_influence(input):
 	randomize()
-	var influence = randi() % 16 - 8
+	var influence = randi() % 4
+	randomize()
+	if randi() % 2 == 0:
+		influence *= -1
 	if input + influence > 100 || input + influence < 0:
 		influence = influence * -1
 	input = input + influence
