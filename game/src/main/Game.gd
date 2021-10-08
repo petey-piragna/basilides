@@ -11,11 +11,10 @@ extends Node2D
 # the second, third, and fourth represent the strength of the virtues, prrinces,
 # and angels, respectively. these are in for level generation.
 
-
+onready var heaven_stack = []
 
 func generate_heavens():
 	print("generating heavens")
-	var heaven_stack = []
 	var heavens = [0, 50, 50, 50]
 	var heaven_rarity = [5, 10, 20, 50]
 	var heaven_counter = 365
@@ -35,12 +34,9 @@ func generate_heavens():
 			i += 1
 		heaven_stack.push_back(heavens.slice(0, heavens.size()))
 		heaven_counter = heaven_counter - 1
-		
-		#var i = 0
-		#while i > 6:
-			#print(heaven_stack[randi() % 365])
-			#i += 1
-	print(heaven_stack) 
+
+func get_heavens():
+	return heaven_stack
 
 func _random_influence(input):
 	randomize()

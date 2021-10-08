@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/LevelSelect.gd" type="Script" id=1]
 
 [sub_resource type="Theme" id=1]
 
@@ -8,85 +10,116 @@ anchor_bottom = 1.0
 margin_top = -0.594604
 margin_bottom = -0.594604
 theme = SubResource( 1 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelOne" type="Button" parent="."]
+[node name="BaseScreen" type="Node" parent="."]
+
+[node name="LevelOne" type="Button" parent="BaseScreen"]
 margin_left = 15.0
-margin_top = 15.0
+margin_top = 14.4054
 margin_right = 145.0
-margin_bottom = 80.0
+margin_bottom = 79.4054
 text = "Level One"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelTwo" type="Button" parent="."]
+[node name="LevelTwo" type="Button" parent="BaseScreen"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = 15.0
-margin_top = 15.0
+margin_top = 14.4054
 margin_right = 145.0
-margin_bottom = 80.0
+margin_bottom = 79.4054
 text = "Level Two"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelThree" type="Button" parent="."]
+[node name="LevelThree" type="Button" parent="BaseScreen"]
 anchor_top = 0.33
 anchor_bottom = 0.33
 margin_left = 15.0
-margin_top = 15.0
+margin_top = 14.4054
 margin_right = 145.0
-margin_bottom = 80.0
+margin_bottom = 79.4054
 text = "Level Three"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelFour" type="Button" parent="."]
+[node name="LevelFour" type="Button" parent="BaseScreen"]
 anchor_left = 0.5
 anchor_top = 0.33
 anchor_right = 0.5
 anchor_bottom = 0.33
 margin_left = 15.0
-margin_top = 15.0
+margin_top = 14.4054
 margin_right = 145.0
-margin_bottom = 80.0
-text = "Level 4"
+margin_bottom = 79.4054
+text = "Level Four"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Stats" type="ColorRect" parent="."]
+[node name="Stats" type="ColorRect" parent="BaseScreen"]
 anchor_top = 0.75
 anchor_bottom = 0.75
+margin_top = -0.594604
 margin_right = 240.0
-margin_bottom = 28.0
+margin_bottom = 27.4054
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Menu" type="Button" parent="."]
+[node name="FinalHeaven" type="Button" parent="BaseScreen"]
+anchor_left = 0.003
+anchor_top = 0.875
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.594604
+margin_bottom = -0.594604
+text = "Enter Final Heaven"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Button" parent="BaseScreen"]
 anchor_left = 1.0
 anchor_top = 0.75
 anchor_right = 1.0
 anchor_bottom = 0.75
 margin_left = -80.0
-margin_bottom = 28.0
+margin_top = -0.594604
+margin_bottom = 27.4054
 text = "Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Final Heaven" type="Button" parent="."]
-anchor_left = 0.003
-anchor_top = 0.875
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "Enter Final Heaven"
+[node name="HeavenCount" type="Label" parent="BaseScreen"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "HEAVENS"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="LevelDetail" type="Control" parent="BaseScreen"]
+visible = false
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+margin_top = -0.594604
+margin_bottom = -0.594604
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="BaseScreen/LevelDetail"]
+anchor_right = 1.0
+anchor_bottom = 1.0

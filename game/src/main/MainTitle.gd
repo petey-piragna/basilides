@@ -1,6 +1,6 @@
 extends Control
-onready var level_select = preload("res://src/main/LevelSelect.tscn")
-signal generate_heavens
+onready var LevelSelect = preload("res://src/main/LevelSelect.tscn")
+onready var Global = $"/root/Global"
 
 
 
@@ -10,6 +10,54 @@ func _on_Button_pressed():
 
 func new_game():
 	print("beginning new game")
-	emit_signal("generate_heavens")
-	get_tree().change_scene_to(level_select)
+	generate_heavens()
+	get_tree().change_scene_to(LevelSelect)
+	
+# generate 365 heavens. each heaven is represented by a nested array of four values. 
+
+# the first is a decimal representation of a four digit binary number, where a 1
+# represents an available level, depending on its place. for example, a value of 1 
+# would mean only level one is available, 3 would repesent that both levels 1 and 2
+# are available, 6 would represent that levels 2 and 3 are available
+
+# the second, third, and fourth represent the strength of the virtues, prrinces,
+# and angels, respectively. these are in for level generation.
+
+onready var heaven_stack = []
+
+func generate_heavens():
+	print("generating heavens")
+	var heavens = [0, 50, 50, 50]
+	var heaven_rarity = [5, 10, 20, 50]
+	var heaven_counter = 365
+	while heaven_counter > 0:
+		var j = 0
+		var lvl_value = 1
+		heavens[0] = 0
+		while j < 4:
+			randomize()
+			if randi() % heaven_rarity[j] == 0:
+				heavens[0] = heavens[0] + lvl_value
+			lvl_value = lvl_value * 2
+			j = j + 1
+		var i = 1
+		while i < 4:
+			heavens[i] = _random_influence(heavens[i])
+			i += 1
+		heaven_stack.push_back(heavens.slice(0, heavens.size()))
+		heaven_counter = heaven_counter - 1
+	Global.set_heavens(heaven_stack.slice(0, heaven_stack.size()))
+
+
+func _random_influence(input):
+	randomize()
+	var influence = randi() % 4
+	randomize()
+	if randi() % 2 == 0:
+		influence *= -1
+	if input + influence > 100 || input + influence < 0:
+		influence = influence * -1
+	input = input + influence
+	return input
+
 
