@@ -46,3 +46,9 @@ func _on_LevelThree_pressed():
 
 func _on_LevelFour_pressed():
 	spend_heavens(4)
+
+
+func _on_FinalHeaven_pressed():
+	Global.final_run = true
+	Global.level_heaven = [0, 50, 50, 50]
+	get_tree().change_scene("res://src/level/Level1.tscn")
