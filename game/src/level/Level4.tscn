@@ -119,4 +119,12 @@ shape = SubResource( 4 )
 position = Vector2( 160, 112 )
 current = true
 
+[node name="HeavenFilter" type="ColorRect" parent="."]
+margin_right = 3200.0
+margin_bottom = 224.0
+color = Color( 1, 1, 1, 0.0745098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="body_entered" from="Progress" to="." method="_on_Progress_body_entered"]
