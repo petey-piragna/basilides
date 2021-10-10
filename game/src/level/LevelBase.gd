@@ -12,8 +12,11 @@ onready var final_run_level = Global.final_run_level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_update_filter()
-	pass # Replace with function body.
+	if level_heaven.size():
+		_update_filter()
+	player.position.x = 15
+	player.position.y = 200
+	activate_stage(stage)
 
 func _update_filter():
 	var i = 0
@@ -28,7 +31,7 @@ func progress():
 	camera.position.x += 320
 	player.position.x = 15 + stage * 320
 	stage += 1
-	if stage == 2:
+	if stage == 10:
 			end()
 
 func end():
@@ -45,4 +48,10 @@ func end():
 
 func _on_Progress_body_entered(body):
 	if body is Player:
+		for Enemy in $Enemies.get_children():
+			if Enemy.get_state() == "ACTIVE":
+				return false	
 		progress()
+
+func activate_stage(stage):
+	get_tree().call_group("stage" + str(stage), "activate")

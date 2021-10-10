@@ -127,4 +127,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Enemies" type="Node" parent="."]
+
 [connection signal="body_entered" from="Progress" to="." method="_on_Progress_body_entered"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/actor/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/level/LevelBase.gd" type="Script" id=2]
+[ext_resource path="res://src/enemy/Enemy.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 37 )
@@ -59,6 +60,7 @@ position = Vector2( 2870, 187 )
 shape = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0.40799, 1.32422 )
 
 [node name="Wall" type="StaticBody2D" parent="."]
 collision_mask = 2
@@ -120,11 +122,16 @@ position = Vector2( 160, 112 )
 current = true
 
 [node name="HeavenFilter" type="ColorRect" parent="."]
+visible = false
 margin_right = 3200.0
 margin_bottom = 224.0
 color = Color( 1, 1, 1, 0.0745098 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 3 )]
 
 [connection signal="body_entered" from="Progress" to="." method="_on_Progress_body_entered"]
