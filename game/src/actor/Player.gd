@@ -33,6 +33,7 @@ func _process(delta):
 		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
 		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 		)
+		
 		if direction.x > 0:
 			_face = Face.RIGHT
 		elif direction.x < 0:
@@ -50,7 +51,9 @@ func _process(delta):
 		collision = move_and_collide(_velocity)
 		if collision:
 			if collision.collider_id == enemy_list[0].get_instance_id():
-				enemy_list[0].execute()
+				if enemy_list[0].execute():
+					_state = State.FREE
+				else: stun()
 			_state = State.FREE
 
 func lunge():
@@ -65,7 +68,10 @@ func lunge():
 		_state = State.FREE
 		return false
 	enemy_list.sort_custom(self, "hypo_sort")
-	
+
+func stun():
+	print("stunned")
+
 func execute():
 	enemy_list[0].execute()
 	_state = State.FREE
@@ -77,9 +83,12 @@ func hypo_sort(a, b):
 		return false
 
 func direct_toward(enemy):
+	print(position - enemy)
 	var angle = tan((position.y - enemy.y) / (position.x - enemy.x))
 	print(angle)
 	var result = Vector2(cos(angle), sin(angle))
+	if _face == Face.LEFT:
+		result *= -1
 	print(result)
 	return result
 

@@ -7,6 +7,8 @@ enum State {
 	ACTIVE
 }
 
+onready var vulnerability = 75
+onready var vitality = 100
 onready var state = State.IDLE
 
 func activate():
@@ -15,7 +17,12 @@ func activate():
 
 func execute():
 	print('dying')
-	queue_free()
+	randomize()
+	if randi() % vulnerability >= vitality:
+		queue_free()
+		return true
+	else:
+		return false
 
 func get_state():
 	if state == State.ACTIVE:
