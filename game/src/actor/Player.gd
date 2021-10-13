@@ -66,9 +66,7 @@ func lunge():
 	print("hehe")
 	enemy_list = []
 	for Enemy in enemies.get_children():
-		if _face == Face.RIGHT && Enemy.position.x > position.x && hypo(Enemy) < 50:
-			enemy_list.push_back(Enemy)
-		elif _face == Face.LEFT && Enemy.position.x < position.x && hypo(Enemy) < 50:
+		if _face == Face.RIGHT && Enemy.position.x > position.x && hypo(Enemy) < 50 || hypo(Enemy) < 20 || _face == Face.LEFT && Enemy.position.x < position.x && hypo(Enemy) < 50:
 			enemy_list.push_back(Enemy)
 	if enemy_list.size() == 0:
 		_state = State.FREE
