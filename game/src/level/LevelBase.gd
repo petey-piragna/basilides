@@ -16,7 +16,7 @@ func _ready():
 		_update_filter()
 	player.position.x = 15
 	player.position.y = 200
-	activate_stage(stage)
+	activate_stage()
 
 func _update_filter():
 	var i = 0
@@ -53,5 +53,5 @@ func _on_Progress_body_entered(body):
 				return false	
 		progress()
 
-func activate_stage(stage):
+func activate_stage():
 	get_tree().call_group("stage" + str(stage), "activate")
